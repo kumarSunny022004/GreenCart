@@ -9,11 +9,20 @@ export const AppContext = createContext();
 export const AppcontextProvider = ({ children })=>{
     const navigate = useNavigate()
 
-    const [user , setUser] = useState(null);
+    const [user , setUser] = useState(true);
     const [isSeller , setIsSeller] = useState(false)
     const [showUserLogin , setShowUserLogin] = useState(false)
-   
-    const value = {navigate , user , setUser , isSeller , setIsSeller,showUserLogin,setShowUserLogin}
+   const [porducts, setProducts] = useState([])
+
+const fetchProducts = async () => {
+    setProducts(dummyProducts)
+}
+
+useEffect(()=>{
+    fetchProducts()
+})
+
+    const value = {navigate , user , setUser , isSeller , setIsSeller,showUserLogin,setShowUserLogin,porducts}
     return (
         <AppContext.Provider value={value}>
             {children}
